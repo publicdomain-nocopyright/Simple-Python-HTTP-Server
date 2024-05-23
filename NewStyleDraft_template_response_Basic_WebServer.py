@@ -14,6 +14,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 
 server = None
 stop_event = threading.Event()
+should_stop = False
 
 def signal_handler(signal, frame):
     logging.info("Web Server Shutting Down.")
@@ -31,7 +32,7 @@ def monitor_script(script_path):
     while not stop_event.is_set():
         time.sleep(1)
         current_modified = os.path.getmtime(script_path)
-        if current_modified != last_modified:
+        if current_modified != last_modified and not stop_event.is_set():
             logging.info("Script modified! Restarting...")
             os.execv(sys.executable, [sys.executable] + sys.argv)
             break
@@ -80,7 +81,8 @@ def start_server():
 #_______________Command_Line_Interface_________________
 
 def listen_for_enter():
-    while True:
+    global should_stop
+    while not stop_event.is_set():
         try:
             command = input().strip().lower()  # Wait for Enter key press
             if command == "stop":
@@ -89,7 +91,8 @@ def listen_for_enter():
                     server.shutdown()
                     logging.info("Server stopped.")
                 stop_event.set()
-                os._exit(0)  # Force exit the program
+                should_stop = True
+                sys.exit(0)  # Force exit the program
             elif command == "" or command == "open":
                 webbrowser.open('http://127.0.0.1:8000')
         except EOFError:
@@ -98,30 +101,43 @@ def listen_for_enter():
 
 # Wrapper function to restart the script
 def restart_script():
-    process = subprocess.Popen([sys.executable, __file__], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, bufsize=1)
-    # Real-time output handling
-    def output_reader(pipe, pipe_name):
-        with pipe:
-            for line in iter(pipe.readline, ''):
-                print(f"[{pipe_name}] {line}", end='')
+    try:
+        process = subprocess.Popen([sys.executable, __file__], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, bufsize=1)
+        # Real-time output handling
+        def output_reader(pipe, pipe_name):
+            with pipe:
+                for line in iter(pipe.readline, ''):
+                    print(f"[{pipe_name}] {line}", end='')
 
-    stdout_thread = threading.Thread(target=output_reader, args=(process.stdout, 'STDOUT'))
-    stderr_thread = threading.Thread(target=output_reader, args=(process.stderr, 'STDERR'))
-    stdout_thread.start()
-    stderr_thread.start()
+        stdout_thread = threading.Thread(target=output_reader, args=(process.stdout, 'STDOUT'))
+        stderr_thread = threading.Thread(target=output_reader, args=(process.stderr, 'STDERR'))
+        stdout_thread.start()
+        stderr_thread.start()
+        
+        stdout_thread.join()
+        stderr_thread.join()
+        
+        process.wait()
+    except Exception as e:
+        logging.error(f"Exception occurred: {e}")
     
-    stdout_thread.join()
-    stderr_thread.join()
-    
-    process.wait()
-    if process.returncode != 0:
+    if process.returncode != 0 and not stop_event.is_set():
         logging.error("Script error. Press Enter to restart the script.")
         input()  # Wait for Enter key press to restart the script
 
 if __name__ == "__main__":
     if 'WRAPPER_RUN' not in os.environ:
         os.environ['WRAPPER_RUN'] = '1'
-        restart_script()
+        while not stop_event.is_set() and not should_stop:
+            try:
+                restart_script()
+            except Exception as e:
+                logging.error(f"Exception occurred in wrapper: {e}")
+                if not stop_event.is_set() and not should_stop:
+                    logging.info("Press Enter to restart the script.")
+                    input()  # Wait for Enter key press to restart the script
+                else:
+                    break
     else:
         script_path = __file__
         monitor_thread = threading.Thread(target=monitor_script, args=(script_path,))
@@ -139,3 +155,7 @@ if __name__ == "__main__":
         # Keep the main thread running, otherwise signals are ignored.
         while not stop_event.is_set():
             time.sleep(1)
+
+# Ensure that the script exits cleanly when stop_event is set
+if stop_event.is_set():
+    sys.exit(0)
