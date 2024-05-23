@@ -58,16 +58,13 @@ class RedirectHandler(BaseHTTPRequestHandler):
                     // Example JavaScript code
                     function test() {
                         document.body.innerHTML += "<div>JavaScript is working!</div>";
-   
                         console.log("JavaScript is working!");
                     }
                     test();
-
                 </script>
             </body>
             </html>""")
-            response = response_template.substitute(path=self.path, two=2)
-
+            response = response_template.substitute(path=self.path)
 
             encoded_response = response.encode('utf-8')
             self.wfile.write(encoded_response)
@@ -84,41 +81,42 @@ def start_server():
 
 def listen_for_enter():
     while True:
-        command = input().strip().lower()  # Wait for Enter key press
-        if command == "stop":
-            logging.info("Stopping the server...")
-            if server:
-                server.shutdown()
-                logging.info("Server stopped.")
-            stop_event.set()
-
-            os._exit(0)  # Force exit the program
-        elif command == "":
-            webbrowser.open('http://127.0.0.1:8000')
-        elif command == "open":
-            webbrowser.open('http://127.0.0.1:8000')
+        try:
+            command = input().strip().lower()  # Wait for Enter key press
+            if command == "stop":
+                logging.info("Stopping the server...")
+                if server:
+                    server.shutdown()
+                    logging.info("Server stopped.")
+                stop_event.set()
+                os._exit(0)  # Force exit the program
+            elif command == "" or command == "open":
+                webbrowser.open('http://127.0.0.1:8000')
+        except EOFError:
+            logging.info("EOF when reading a line")
+            break
 
 # Wrapper function to restart the script
 def restart_script():
-        process = subprocess.Popen([sys.executable, __file__], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, bufsize=1)
-        # Real-time output handling
-        def output_reader(pipe, pipe_name):
-            with pipe:
-                for line in iter(pipe.readline, ''):
-                    print(f"[{pipe_name}] {line}", end='')
+    process = subprocess.Popen([sys.executable, __file__], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True, bufsize=1)
+    # Real-time output handling
+    def output_reader(pipe, pipe_name):
+        with pipe:
+            for line in iter(pipe.readline, ''):
+                print(f"[{pipe_name}] {line}", end='')
 
-        stdout_thread = threading.Thread(target=output_reader, args=(process.stdout, 'STDOUT'))
-        stderr_thread = threading.Thread(target=output_reader, args=(process.stderr, 'STDERR'))
-        stdout_thread.start()
-        stderr_thread.start()
-        
-        stdout_thread.join()
-        stderr_thread.join()
-        
-        process.wait()
-        if process.returncode != 0:
-            logging.error("Script error. Press Enter to restart the script.")
-            input()  # Wait for Enter key press to restart the script
+    stdout_thread = threading.Thread(target=output_reader, args=(process.stdout, 'STDOUT'))
+    stderr_thread = threading.Thread(target=output_reader, args=(process.stderr, 'STDERR'))
+    stdout_thread.start()
+    stderr_thread.start()
+    
+    stdout_thread.join()
+    stderr_thread.join()
+    
+    process.wait()
+    if process.returncode != 0:
+        logging.error("Script error. Press Enter to restart the script.")
+        input()  # Wait for Enter key press to restart the script
 
 if __name__ == "__main__":
     if 'WRAPPER_RUN' not in os.environ:
