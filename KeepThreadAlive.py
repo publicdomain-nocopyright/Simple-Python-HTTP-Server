@@ -1,9 +1,11 @@
 import threading
+import time
 
 def start_thread(function_name):
     thread = threading.Thread(target=function_name)
     thread.daemon = True
     thread.start()
+    return thread
 
 # Function to keep the thread alive
 def wait_for_exit():
@@ -12,9 +14,15 @@ def wait_for_exit():
             print("Exiting...")
             break
 
-# Create and start the thread
-exit_thread = threading.Thread(target=wait_for_exit)
-exit_thread.start()
+# Function to print "test" every second
+def print_test_every_second():
+    while True:
+        print("test")
+        time.sleep(1)
+
+# Create and start the threads
+exit_thread = start_thread(wait_for_exit)
+print_thread = start_thread(print_test_every_second)
 
 # Main thread can continue to do other things if needed
 try:
