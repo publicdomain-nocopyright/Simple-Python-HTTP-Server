@@ -46,7 +46,7 @@ class RedirectHandler(BaseHTTPRequestHandler):
             self.send_header("Content-type", "text/html")
             self.end_headers()
             
-            response_template = Template("""<!DOCTYPE html>
+            response = Template("""<!DOCTYPE html>
             <html>
             <head>
                 <title>https://pythonbasics.org</title>
@@ -64,8 +64,8 @@ class RedirectHandler(BaseHTTPRequestHandler):
                     alert("Welcome to the example web server!");
                 </script>
             </body>
-            </html>""")
-            response = response_template.substitute(path=self.path, two=2)
+            </html>""").substitute(path=self.path, two=2)
+            
 
             # Encode the response to bytes
             encoded_response = response.encode('utf-8')
