@@ -1,8 +1,8 @@
 import threading
 import time
 
-def BackgroundThread(function_name):
-    thread = threading.Thread(target=function_name, daemon = True)
+def BackgroundThread(**configs):
+    thread = threading.Thread(**configs, daemon = True)
     thread.start()
     return thread
 
@@ -22,8 +22,8 @@ def print_test_every_second():
         time.sleep(1)
 
 # Create and start the threads
-exit_thread = BackgroundThread(wait_for_exit)
-print_thread = BackgroundThread(print_test_every_second)
+exit_thread = BackgroundThread(target=wait_for_exit)
+print_thread = BackgroundThread(target=print_test_every_second)
 
 # Main thread can continue to do other things if needed
 try:
