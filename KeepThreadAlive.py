@@ -1,6 +1,6 @@
 import threading
 import time
-
+import sys 
 def BackgroundThread(**configs):
     thread = threading.Thread(**configs, daemon = True)
     thread.start()
@@ -10,9 +10,13 @@ def BackgroundThread(**configs):
 def wait_for_exit():
     try:
         while True:
-            if input(f" {threading.current_thread().name} Type 'exit' to quit:").lower() == 'exit':
-                print("Exiting...")
-                break
+            print("Waiting for input...")
+            command = sys.stdin.readline().strip()  # Read input from stdin
+            if command.lower() == "exit":           # Check if the command is "exit"
+                print("Exiting the program.")
+                break                               # Exit the loop to terminate the program
+            else:
+                print(f"Received command: {command}")
     except:
         pass
 # Function to print "test" every second
