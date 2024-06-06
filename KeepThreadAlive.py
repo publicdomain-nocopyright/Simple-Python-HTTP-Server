@@ -1,6 +1,11 @@
+import threading
 import time
 
-#__________________________________________________________________
+def BackgroundThread(**configs):
+    thread = threading.Thread(**configs, daemon = True)
+    thread.start()
+    return thread
+
 # Function to keep the thread alive
 def wait_for_exit():
     try:
@@ -15,14 +20,6 @@ def print_test_every_second():
     while True:
         print(f"Running in thread: {threading.current_thread().name}")
         time.sleep(1)
-
-import threading
-def BackgroundThread(**configs):
-    thread = threading.Thread(**configs, daemon = True)
-    thread.start()
-    return thread
-
-#__________________________________________________________________
 
 # Create and start the threads
 exit_thread = BackgroundThread(target=wait_for_exit)
