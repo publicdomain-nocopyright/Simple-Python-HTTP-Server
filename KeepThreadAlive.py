@@ -10,8 +10,7 @@ def newBackgroundThread(function_name):
 def wait_for_exit():
     try:
         while True:
-            print(f"Running in thread: {threading.current_thread().name}")
-            if input("Type 'exit' to quit: \n").lower() == 'exit':
+            if input(f" {threading.current_thread().name} Type 'exit' to quit:").lower() == 'exit':
                 print("Exiting...")
                 break
     except:
@@ -20,7 +19,6 @@ def wait_for_exit():
 def print_test_every_second():
     while True:
         print(f"Running in thread: {threading.current_thread().name}")
-        print("test")
         time.sleep(1)
 
 # Create and start the threads
