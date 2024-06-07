@@ -1,10 +1,9 @@
 import threading
 import time
 import sys 
-def BackgroundThread(**configs):
-    thread = threading.Thread(**configs, daemon = True)
-    thread.start()
-    return thread
+from cpython.Lib.threading import BackgroundThread
+
+
 
 # Function to keep the thread alive
 def wait_for_exit():
