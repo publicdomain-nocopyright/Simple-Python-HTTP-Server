@@ -1,0 +1,1 @@
+# https://github.com/python/cpython/blob/main/Python/bltinmodule.c#L2136
