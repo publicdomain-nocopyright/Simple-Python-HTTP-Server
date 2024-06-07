@@ -10,13 +10,13 @@ def BackgroundThread(**configs):
 def wait_for_exit():
     try:
         while True:
-            print("Waiting for input...")
+            #print("Waiting for input...")
             command = sys.stdin.readline().strip()  # Read input from stdin
             if command.lower() == "exit":           # Check if the command is "exit"
                 print("Exiting the program.")
                 break                               # Exit the loop to terminate the program
-            else:
-                print(f"Received command: {command}")
+            #else:
+             #   print(f"Received command: {command}")
     except:
         pass
 # Function to print "test" every second
