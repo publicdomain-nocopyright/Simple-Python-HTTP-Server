@@ -87,8 +87,16 @@ def reversearray_charmatch(text, array):
             return True
     return False
 
-def getreversearrayinput(keys):
-    pass
+def getreversearrayinput():
+    input_keys = []
+    while True:
+        last_input_key = readkey()
+        input_keys += last_input_key
+        print(input_keys)
+        if last_input_key == '\r':
+            return input_keys
+        
+
 
 import sys
 import webbrowser
@@ -112,8 +120,10 @@ def readkeyuntil(text, keys):
             webbrowser.open("https://app.revolt.chat/server/")
         if reversearray_charmatch("about", keys):
             webbrowser.open("https://github.com/publicdomain-nocopyright/Simple-Python-HTTP-Server")
-
+        if reversearray_charmatch("input", keys):
+            print("input start")
             
+            print(str(getreversearrayinput()) + "input end")
         if reversearray_charmatch("help", keys):
             print("Matched text:", reversearray_charmatch_result)
             print(global_array)
