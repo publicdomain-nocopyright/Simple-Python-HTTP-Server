@@ -124,6 +124,19 @@ def readkeyuntil(text, keys):
             webbrowser.open("https://app.revolt.chat/server/")
         if reversearray_charmatch("about", keys):
             webbrowser.open("https://github.com/publicdomain-nocopyright/Simple-Python-HTTP-Server")
+        if reversearray_charmatch("create file", keys):
+            print("input start")
+            stringarray = getreversearrayinput()
+            stringarray.pop()
+            print("__")
+            print(stringarray)
+            print("__")
+            input = arraytostring(stringarray)
+            
+            print(input)
+            print("input end")
+            import os
+            open(input, 'w').close()
         if reversearray_charmatch("input", keys):
             print("input start")
             input = arraytostring(getreversearrayinput())
