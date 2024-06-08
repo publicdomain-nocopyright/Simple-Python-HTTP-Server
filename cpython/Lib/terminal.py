@@ -169,6 +169,8 @@ def readkeyuntil(text, keys):
             print("\r                                                \r", end="", flush=True)
             print("Matched text:", reversearray_charmatch_result)
             print(global_array)
+            print("\r                                                \r|", end="", flush=True)
+            
         if reversearray_charmatch("clear", keys):
             print("Matched text:", reversearray_charmatch_result)
             if os.name == 'nt':
