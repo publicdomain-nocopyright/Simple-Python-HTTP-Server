@@ -105,6 +105,11 @@ def readkeyuntil(text, keys):
         if reversearray_charmatch("open github", keys):
             print("Matched text:", reversearray_charmatch_result)
             webbrowser.open("https://www.github.com")
+        if reversearray_charmatch("revolt", keys):
+            print("Matched text:", reversearray_charmatch_result)
+            webbrowser.open("https://app.revolt.chat/server/")
+
+            
         if reversearray_charmatch("help", keys):
             print("Matched text:", reversearray_charmatch_result)
             print(global_array)
@@ -112,9 +117,13 @@ def readkeyuntil(text, keys):
             print("Matched text:", reversearray_charmatch_result)
             if os.name == 'nt':
                 os.system('cls')
-            # Clear command for Unix/Linux/Mac
             else:
                 os.system('clear')
+
+
+        if reversearray_charmatch("\x00k", keys):
+            print("Matched text:", reversearray_charmatch_result)
+            sys.exit()
         if reversearray_charmatch("exit", keys):
             print("Matched text:", reversearray_charmatch_result)
         if reversearray_charmatch('\x1b', keys):
