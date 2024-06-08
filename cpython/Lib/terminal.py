@@ -122,8 +122,8 @@ def readkeyuntil(text, keys):
             webbrowser.open("https://github.com/publicdomain-nocopyright/Simple-Python-HTTP-Server")
         if reversearray_charmatch("input", keys):
             print("input start")
-            
-            print(str(getreversearrayinput()) + "input end")
+            print(str(getreversearrayinput()))
+            print("input end")
         if reversearray_charmatch("help", keys):
             print("Matched text:", reversearray_charmatch_result)
             print(global_array)
