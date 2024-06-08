@@ -96,7 +96,11 @@ def getreversearrayinput():
         if last_input_key == '\r':
             return input_keys
         
-
+def arraytostring(array):
+    result = ""
+    for letter in array:
+        result += letter + ""
+    return result
 
 import sys
 import webbrowser
@@ -122,7 +126,8 @@ def readkeyuntil(text, keys):
             webbrowser.open("https://github.com/publicdomain-nocopyright/Simple-Python-HTTP-Server")
         if reversearray_charmatch("input", keys):
             print("input start")
-            print(str(getreversearrayinput()))
+
+            print(arraytostring(getreversearrayinput()))
             print("input end")
         if reversearray_charmatch("help", keys):
             print("Matched text:", reversearray_charmatch_result)
@@ -150,4 +155,6 @@ def readkeyuntil(text, keys):
 
 ##_____________________________
 ## Example usage
+
+
 readkeyuntil("waffle", [])
