@@ -110,6 +110,7 @@ import sys
 import webbrowser
 import os
 def readkeyuntil(text, keys):
+    print("\r|", end="")
     while True:
         # Read key input and append to keys list
         lastkey = readkey()
@@ -144,7 +145,7 @@ def readkeyuntil(text, keys):
         if reversearray_charmatch("about", keys):
             webbrowser.open("https://github.com/publicdomain-nocopyright/Simple-Python-HTTP-Server")
         if reversearray_charmatch("create file", keys):
-            print("input start")
+            print(" input start")
             stringarray = getreversearrayinput()
             stringarray.pop()
             input = arraytostring(stringarray)
@@ -160,7 +161,7 @@ def readkeyuntil(text, keys):
             print("input end")
             os.makedirs(input, exist_ok=True)
         if reversearray_charmatch("input", keys):
-            print("input start")
+            print(" input start")
             input = arraytostring(getreversearrayinput())
             print(input)
             print("input end")
