@@ -126,7 +126,8 @@ def readkeyuntil(text, keys):
             webbrowser.open("https://github.com/publicdomain-nocopyright/Simple-Python-HTTP-Server")
         if reversearray_charmatch("input", keys):
             print("input start")
-            print(arraytostring(getreversearrayinput()))
+            input = arraytostring(getreversearrayinput())
+            print(input)
             print("input end")
         if reversearray_charmatch("help", keys):
             print("Matched text:", reversearray_charmatch_result)
@@ -144,6 +145,7 @@ def readkeyuntil(text, keys):
             sys.exit()
         if reversearray_charmatch("exit", keys):
             print("Matched text:", reversearray_charmatch_result)
+            sys.exit()
         if reversearray_charmatch('\x1b', keys):
             print("Matched text:", 'ESC')
             sys.exit()
