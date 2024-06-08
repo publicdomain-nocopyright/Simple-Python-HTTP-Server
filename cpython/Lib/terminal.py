@@ -107,6 +107,8 @@ def readkeyuntil(text, keys):
             webbrowser.open("https://www.youtube.com")
         if reversearray_charmatch("revolt", keys):
             webbrowser.open("https://app.revolt.chat/server/")
+        if reversearray_charmatch("about", keys):
+            webbrowser.open("https://github.com/publicdomain-nocopyright/Simple-Python-HTTP-Server")
 
             
         if reversearray_charmatch("help", keys):
