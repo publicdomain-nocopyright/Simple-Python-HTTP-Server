@@ -87,6 +87,9 @@ def reversearray_charmatch(text, array):
             return True
     return False
 
+def getreversearrayinput(keys):
+    pass
+
 import sys
 import webbrowser
 import os
