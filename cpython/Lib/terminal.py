@@ -110,6 +110,16 @@ def readkeyuntil(text, keys):
         # Read key input and append to keys list
         keys.append(readkey())
         print(keys)
+
+        # Should be executed once at the beginning of the program
+        if reversearray_charmatch("credits", keys):
+            if os.name == 'nt':
+                os.system('cls')
+            else:
+                os.system('clear')
+            print("Matched text:", reversearray_charmatch_result)
+            print("Public Domain Laboratories.", reversearray_charmatch_result)
+
         if reversearray_charmatch(text, keys):
             print("Matched text:", text)
         if reversearray_charmatch("fooo", keys):
@@ -154,13 +164,6 @@ def readkeyuntil(text, keys):
                 os.system('cls')
             else:
                 os.system('clear')
-        if reversearray_charmatch("credits", keys):
-            if os.name == 'nt':
-                os.system('cls')
-            else:
-                os.system('clear')
-            print("Matched text:", reversearray_charmatch_result)
-            print("Public Domain Laboratories.", reversearray_charmatch_result)
 
         if reversearray_charmatch("\x00k", keys):
             print("Matched text:", reversearray_charmatch_result)
