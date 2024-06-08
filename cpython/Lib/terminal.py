@@ -104,7 +104,7 @@ def arraytostring(array):
 
 
 # TODO: While typing, give a choice or parameter to type in. The "ok " (and space) could be used to clear the input. 
-# TODO: Maybe a double space (  ) would be great for clearing the input.
+# TODO: Maybe a double space (  ) would be great for clearing the input. TAB key also could be great.
 import sys
 import webbrowser
 import os
