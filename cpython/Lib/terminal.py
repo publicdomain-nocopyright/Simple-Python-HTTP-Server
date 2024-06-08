@@ -14,12 +14,55 @@ def readkey():
 # 
 
 # Second version and more handling support
+#def readkeyuntil(text, keys):
+#    while True:
+#        if list(text) != keys:
+#            keys.append(readkey())
+#            print(keys)
+#        else:  
+#            return
+        
+# you can try to reverse the input string and match against array in reverse.
+
+def compare_last_positions(array, sequence):
+    #_____________________________
+    # Get the length of the sequence
+    sequence_length = len(sequence)
+    #_____________________________
+    # Get the last positions of the array with the same length as the sequence
+    array_end = array[-sequence_length:]
+    print("-----")
+    print(array_end)
+    print(sequence)
+    #_____________________________
+    # Compare the array end with the sequence
+    return array_end == sequence
+
 def readkeyuntil(text, keys):
+    #_____________________________
+    # Function to simulate reading a key from the user
+    def readkey():
+        import msvcrt
+        return msvcrt.getch().decode()
+
     while True:
-        if list(text) != keys:
-            keys.append(readkey())
+        #_____________________________
+        # Convert the text to a list of characters
+        text_list = list(text)
+        
+        #_____________________________
+        # Compare the last positions of the text with the keys
+        if not compare_last_positions(text_list, keys):
+            #_____________________________
+            # Append the read key to the keys list
+            key = readkey()
+            keys.append(key)
             print(keys)
-        else:  
+        else:
+            #_____________________________
+            # Break the loop when the keys match the end of the text
             return
 
+#_____________________________
+# Example usage
 readkeyuntil("waffle", [])
