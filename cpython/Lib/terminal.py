@@ -67,9 +67,12 @@ def readkey():
 ###### Didn't work out as it compares whole array against array and not text letters in reverse order against key presses.
 
 # Compare keys with text in reverse order
+
 def reversearray_charmatch(text, array):
+    global reversearray_charmatch_result
     if len(array) >= len(text):
         if array[-len(text):] == list(text):
+            reversearray_charmatch_result = text
             return True
     return False
 
@@ -81,6 +84,8 @@ def readkeyuntil(text, keys):
         print(keys)
         if reversearray_charmatch(text, keys):
             print("Matched text:", text)
+        if reversearray_charmatch("fooo", keys):
+            print("Matched text:", reversearray_charmatch_result)
         if reversearray_charmatch("waffle store", keys):
             print("Matched text:", "waffle store")
             import webbrowser
