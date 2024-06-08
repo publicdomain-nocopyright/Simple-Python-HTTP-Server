@@ -9,6 +9,6 @@ def readkey():
 def readkeyuntil(text, keys):
     while list(text) != keys:
         keys.append(readkey())
-        print(str(keys))
+        print(keys)
 
 readkeyuntil("waffle", [])
