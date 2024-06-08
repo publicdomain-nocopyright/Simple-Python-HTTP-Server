@@ -158,6 +158,7 @@ def readkeyuntil(text, keys):
             print(input)
             print("input end")
         if reversearray_charmatch("help", keys):
+            print()
             print("Matched text:", reversearray_charmatch_result)
             print(global_array)
         if reversearray_charmatch("clear", keys):
