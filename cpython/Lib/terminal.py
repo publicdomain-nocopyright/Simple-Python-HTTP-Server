@@ -165,7 +165,7 @@ def readkeyuntil(text, keys):
             print(input)
             print("input end")
         if reversearray_charmatch("help", keys):
-            print()
+            print("\r                                                \r", end="", flush=True)
             print("Matched text:", reversearray_charmatch_result)
             print(global_array)
         if reversearray_charmatch("clear", keys):
@@ -209,5 +209,6 @@ try:
     readkeyuntil("waffle", [])
 except Exception as e:
     print(f"An error occurred: {e}")
-finally:
     input("\nPress Enter to close the window...")
+
+    
