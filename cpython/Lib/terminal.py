@@ -109,7 +109,7 @@ def readkeyuntil(text, keys):
     while True:
         # Read key input and append to keys list
         lastkey = readkey()
-        print(lastkey, end="|")
+        print(lastkey, end="\r")
         keys.append(lastkey)
         #print(arraytostring(keys))
         
