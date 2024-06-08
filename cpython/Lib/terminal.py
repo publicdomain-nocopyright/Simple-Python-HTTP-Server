@@ -85,6 +85,10 @@ def readkeyuntil(text, keys):
             print("Matched text:", "waffle store")
             import webbrowser
             webbrowser.open("https://www.example.com")
+        if reversearray_charmatch("open github", keys):
+            print("Matched text:", "open github")
+            import webbrowser
+            webbrowser.open("https://www.github.com")
         if reversearray_charmatch("exit", keys):
             print("Matched text:", "exit")
         if reversearray_charmatch('\x1b', keys):
