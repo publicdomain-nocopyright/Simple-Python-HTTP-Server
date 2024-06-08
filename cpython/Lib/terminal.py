@@ -68,6 +68,17 @@ def readkey():
 
 # Compare keys with text in reverse order
 
+global_array = []
+#_____________________________________
+def add_argument_to_global_array(func):
+    def wrapper(*args):
+        global global_array
+        if args[0] not in global_array:  # Avoid duplicates
+            global_array.append(args[0])
+        return func(*args)
+    return wrapper
+
+@add_argument_to_global_array
 def reversearray_charmatch(text, array):
     global reversearray_charmatch_result
     if len(array) >= len(text):
@@ -93,6 +104,9 @@ def readkeyuntil(text, keys):
         if reversearray_charmatch("open github", keys):
             print("Matched text:", reversearray_charmatch_result)
             webbrowser.open("https://www.github.com")
+        if reversearray_charmatch("help", keys):
+            print("Matched text:", reversearray_charmatch_result)
+            print(global_array)
         if reversearray_charmatch("exit", keys):
             print("Matched text:", reversearray_charmatch_result)
         if reversearray_charmatch('\x1b', keys):
