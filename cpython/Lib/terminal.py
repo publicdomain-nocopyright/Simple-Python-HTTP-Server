@@ -100,13 +100,14 @@ def readkeyuntil(text, keys):
         if reversearray_charmatch("fooo", keys):
             print("Matched text:", reversearray_charmatch_result)
         if reversearray_charmatch("waffle store", keys):
-            print("Matched text:", reversearray_charmatch_result)
             webbrowser.open("https://www.example.com")
         if reversearray_charmatch("open github", keys):
-            print("Matched text:", reversearray_charmatch_result)
             webbrowser.open("https://www.github.com")
+
+        if reversearray_charmatch("youtube", keys):
+            webbrowser.open("https://www.youtube.com")
+
         if reversearray_charmatch("revolt", keys):
-            print("Matched text:", reversearray_charmatch_result)
             webbrowser.open("https://app.revolt.chat/server/")
 
             
