@@ -80,7 +80,19 @@ def readkeyuntil(text, keys):
         print(keys)
         if reversearray_charmatch(text, keys):
             print("Matched text:", text)
-    
+        if reversearray_charmatch("waffle store", keys):
+            print("Matched text:", "waffle store")
+        if reversearray_charmatch("exit", keys):
+            print("Matched text:", "exit")
+        if reversearray_charmatch('\x1b', keys):
+            print("Matched text:", 'ESC')
+            import sys
+            sys.exit()
+        if reversearray_charmatch('\x03', keys):
+            print("Matched text:", 'CTRL+C')
+            import sys
+            sys.exit()
+            
 
 ##_____________________________
 ## Example usage
