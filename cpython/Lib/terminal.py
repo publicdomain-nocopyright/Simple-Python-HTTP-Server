@@ -73,6 +73,7 @@ def reversearray_charmatch(text, array):
             return True
     return False
 
+
 def readkeyuntil(text, keys):
     while True:
         # Read key input and append to keys list
@@ -82,6 +83,8 @@ def readkeyuntil(text, keys):
             print("Matched text:", text)
         if reversearray_charmatch("waffle store", keys):
             print("Matched text:", "waffle store")
+            import webbrowser
+            webbrowser.open("https://www.example.com")
         if reversearray_charmatch("exit", keys):
             print("Matched text:", "exit")
         if reversearray_charmatch('\x1b', keys):
