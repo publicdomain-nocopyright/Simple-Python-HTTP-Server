@@ -89,6 +89,7 @@ def reversearray_charmatch(text, array):
 
 import sys
 import webbrowser
+import os
 def readkeyuntil(text, keys):
     while True:
         # Read key input and append to keys list
@@ -107,6 +108,13 @@ def readkeyuntil(text, keys):
         if reversearray_charmatch("help", keys):
             print("Matched text:", reversearray_charmatch_result)
             print(global_array)
+        if reversearray_charmatch("clear", keys):
+            print("Matched text:", reversearray_charmatch_result)
+            if os.name == 'nt':
+                os.system('cls')
+            # Clear command for Unix/Linux/Mac
+            else:
+                os.system('clear')
         if reversearray_charmatch("exit", keys):
             print("Matched text:", reversearray_charmatch_result)
         if reversearray_charmatch('\x1b', keys):
