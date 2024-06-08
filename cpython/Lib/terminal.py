@@ -104,6 +104,7 @@ def arraytostring(array):
 
 
 # TODO: While typing, give a choice or parameter to type in. The "ok " (and space) could be used to clear the input. 
+# TODO: Maybe a double space (  ) would be great for clearing the input.
 import sys
 import webbrowser
 import os
@@ -147,7 +148,7 @@ def readkeyuntil(text, keys):
             print("input end")
             open(input, 'w').close()
         if reversearray_charmatch("create folder", keys):
-            print("input start")
+            print(" input start")
             stringarray = getreversearrayinput()
             stringarray.pop()
             input = arraytostring(stringarray)
