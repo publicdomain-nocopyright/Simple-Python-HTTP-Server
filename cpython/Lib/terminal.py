@@ -23,14 +23,15 @@ def readkey():
 #            return
         
 # you can try to reverse the input string and match against array in reverse.
+# Compare each letter from the end of array in reverse order.
 
-def compare_last_positions(array, sequence):
+def compare_last_positions(arrays, sequence):
     #_____________________________
     # Get the length of the sequence
     sequence_length = len(sequence)
     #_____________________________
     # Get the last positions of the array with the same length as the sequence
-    array_end = array[-sequence_length:]
+    array_end = arrays[-sequence_length:]
     print("-----")
     print(array_end)
     print(sequence)
