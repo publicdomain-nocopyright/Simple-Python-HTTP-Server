@@ -154,7 +154,13 @@ def readkeyuntil(text, keys):
                 os.system('cls')
             else:
                 os.system('clear')
-
+        if reversearray_charmatch("credits", keys):
+            if os.name == 'nt':
+                os.system('cls')
+            else:
+                os.system('clear')
+            print("Matched text:", reversearray_charmatch_result)
+            print("Public Domain Laboratories.", reversearray_charmatch_result)
 
         if reversearray_charmatch("\x00k", keys):
             print("Matched text:", reversearray_charmatch_result)
