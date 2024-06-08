@@ -64,6 +64,8 @@ def readkey():
 #            # Break the loop when the keys match the end of the text
 #            return
 #
+###### Didn't work out as it compares whole array against array and not text letters in reverse order against key presses.
+
 
 def readkeyuntil(text, keys):
     while True:
