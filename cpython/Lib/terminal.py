@@ -108,9 +108,11 @@ import os
 def readkeyuntil(text, keys):
     while True:
         # Read key input and append to keys list
-        keys.append(readkey())
-        print(keys)
-
+        lastkey = readkey()
+        print(lastkey, end="|")
+        keys.append(lastkey)
+        #print(arraytostring(keys))
+        
         # TOOD: Should be executed once at the beginning of the program.
         if reversearray_charmatch("credits", keys):
             if os.name == 'nt':
@@ -118,7 +120,7 @@ def readkeyuntil(text, keys):
             else:
                 os.system('clear')
             print("Matched text:", reversearray_charmatch_result)
-            print("Public Domain Laboratories.", reversearray_charmatch_result)
+            print("Public Domain Laboratories.")
 
         if reversearray_charmatch(text, keys):
             print("Matched text:", text)
@@ -182,5 +184,6 @@ def readkeyuntil(text, keys):
 ##_____________________________
 ## Example usage
 
-
+print("Public Domain Laboratories.")
+print("Write \"help\" to get more information.")
 readkeyuntil("waffle", [])
