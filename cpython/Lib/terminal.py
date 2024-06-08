@@ -128,15 +128,18 @@ def readkeyuntil(text, keys):
             print("input start")
             stringarray = getreversearrayinput()
             stringarray.pop()
-            print("__")
-            print(stringarray)
-            print("__")
             input = arraytostring(stringarray)
-            
             print(input)
             print("input end")
-            import os
             open(input, 'w').close()
+        if reversearray_charmatch("create folder", keys):
+            print("input start")
+            stringarray = getreversearrayinput()
+            stringarray.pop()
+            input = arraytostring(stringarray)
+            print(input)
+            print("input end")
+            os.makedirs(input, exist_ok=True)
         if reversearray_charmatch("input", keys):
             print("input start")
             input = arraytostring(getreversearrayinput())
