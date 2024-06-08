@@ -115,9 +115,9 @@ def readkeyuntil(text, keys):
         lastkey = readkey()
         print(lastkey, end="", flush=True)
         keys.append(lastkey)
-
-        if lastkey == '\t':
-            print("\r                \r", end="", flush=True)
+       
+        if lastkey == '\t' :
+            print("\r                                                \r", end="", flush=True)
         #print(arraytostring(keys))
         
         # TOOD: Should be executed once at the beginning of the program.
