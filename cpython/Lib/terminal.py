@@ -111,7 +111,7 @@ def readkeyuntil(text, keys):
         keys.append(readkey())
         print(keys)
 
-        # Should be executed once at the beginning of the program
+        # TOOD: Should be executed once at the beginning of the program.
         if reversearray_charmatch("credits", keys):
             if os.name == 'nt':
                 os.system('cls')
