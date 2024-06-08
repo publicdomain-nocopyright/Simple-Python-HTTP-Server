@@ -102,6 +102,8 @@ def arraytostring(array):
         result += letter + ""
     return result
 
+
+# TODO: While typing, give a choice or parameter to type in. The "ok " (and space) could be used to clear the input. 
 import sys
 import webbrowser
 import os
