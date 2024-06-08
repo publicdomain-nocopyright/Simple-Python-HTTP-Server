@@ -174,6 +174,8 @@ def readkeyuntil(text, keys):
                 os.system('cls')
             else:
                 os.system('clear')
+            print("Public Domain Laboratories.")
+            print("Write \"help\" to get more information.")
 
         if reversearray_charmatch('computer', keys):
             print()
@@ -201,6 +203,11 @@ def readkeyuntil(text, keys):
 ##_____________________________
 ## Example usage
 
-print("Public Domain Laboratories.")
-print("Write \"help\" to get more information.")
-readkeyuntil("waffle", [])
+try:
+    print("Public Domain Laboratories.")
+    print("Write \"help\" to get more information.")
+    readkeyuntil("waffle", [])
+except Exception as e:
+    print(f"An error occurred: {e}")
+finally:
+    input("\nPress Enter to close the window...")
