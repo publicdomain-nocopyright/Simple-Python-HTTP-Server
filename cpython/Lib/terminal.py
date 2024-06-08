@@ -100,7 +100,6 @@ def readkeyuntil(text, keys):
             sys.exit()
         if reversearray_charmatch('\x03', keys):
             print("Matched text:", 'CTRL+C')
-            import sys
             sys.exit()
             
 
