@@ -170,6 +170,16 @@ def readkeyuntil(text, keys):
             else:
                 os.system('clear')
 
+        if reversearray_charmatch('computer', keys):
+            print()
+            import platform
+            import psutil
+            print(platform.system())
+            print(platform.machine())
+            print(platform.processor())
+            print(round(psutil.virtual_memory().total / (1024**3), 2))
+            sys.exit()
+
         if reversearray_charmatch("\x00k", keys):
             print("Matched text:", reversearray_charmatch_result)
             sys.exit()
